@@ -1,0 +1,67 @@
+.blog-card {
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--card-border) !important;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-image-wrapper {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background-color: #e9ecef;
+}
+
+.favorite-icon-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  
+  i {
+    font-size: 1.75rem;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+
+    &:hover {
+      transform: scale(1.2);
+    }
+    
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.content-area {
+  color: var(--text-primary);
+}
+
+.like-button {
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--primary-color);
+    
+    i {
+        transform: scale(1.1);
+    }
+  }
+  
+  .like-count {
+      color: var(--text-primary);
+  }
+}
+
+.rating-wrapper {
+    display: flex;
+    align-items: center;
+}

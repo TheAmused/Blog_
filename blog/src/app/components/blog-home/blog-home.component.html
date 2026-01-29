@@ -1,0 +1,63 @@
+<div class="container fade-in pb-5">
+  
+  <div class="text-center mb-5 pt-4">
+    <h1 class="display-6 fw-bold mb-3">Odkrywaj Artykuły</h1>
+    <p class="lead text-secondary mb-4">Znajdź inspirację, czytaj nowości i dziel się wiedzą.</p>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="d-flex gap-3 align-items-center flex-wrap flex-md-nowrap">
+          
+          <div class="flex-grow-1 w-100">
+            <search-bar (name)="getName($event)"></search-bar>
+          </div>
+
+          <div class="limit-selector shadow-sm">
+            <span class="label">Na stronę:</span>
+            <select [value]="itemsPerPage" (change)="onLimitChange($event)">
+              @for (limit of limitOptions; track limit) {
+                <option [value]="limit">{{ limit }}</option>
+              }
+            </select>
+          </div>
+
+          <button class="btn btn-icon-only flex-shrink-0" (click)="refreshPosts()" title="Zresetuj filtry">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row g-4">
+    @for (post of posts; track post._id) {
+      <div class="col-sm-6 col-lg-3">
+         <blog-item 
+            [image]="post.image"
+            [text]="post.text"
+            [title]="post.title"
+            [id]="post._id"
+            [likes]="post.likes || []"
+         ></blog-item>
+      </div>
+    }
+    @empty {
+       <div class="col-12 text-center py-5">
+         <p class="text-muted fs-5">Nie znaleziono postów.</p>
+       </div>
+    }
+  </div>
+
+  @if (totalItems > itemsPerPage) {
+    <div class="d-flex justify-content-center mt-5">
+      <app-pagination 
+        [totalItems]="totalItems"
+        [itemsPerPage]="itemsPerPage"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)">
+      </app-pagination>
+    </div>
+  }
+
+</div>

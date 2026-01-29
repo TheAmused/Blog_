@@ -1,0 +1,52 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 fade-in pb-5">
+  <div class="card auth-card border-0 shadow-lg p-4 p-md-5">
+    
+    <div class="text-center mb-4">
+      <div class="icon-circle bg-primary-subtle text-primary mb-3 mx-auto">
+        <i class="bi bi-person-fill fs-3"></i>
+      </div>
+      <h2 class="fw-bold">Witaj ponownie!</h2>
+      <p class="text-secondary small">Zaloguj się, aby kontynuować</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="signin()" autocomplete="off">
+      
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="loginInput" formControlName="login" placeholder="Login"
+               [class.is-invalid]="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
+        <label for="loginInput">Twój login lub email</label>
+        
+        @if (loginForm.get('login')?.invalid && loginForm.get('login')?.touched) {
+          <div class="invalid-feedback">Login jest wymagany</div>
+        }
+      </div>
+
+      <div class="form-floating mb-4">
+        <input type="password" class="form-control" id="passInput" formControlName="password" placeholder="Hasło"
+               [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <label for="passInput">Hasło</label>
+        
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="invalid-feedback">Hasło jest wymagane</div>
+        }
+      </div>
+
+      @if (loginError) {
+        <div class="alert alert-danger d-flex align-items-center mb-4 small" role="alert">
+          <i class="bi bi-exclamation-circle-fill me-2"></i>
+          <div>Nieprawidłowy login lub hasło</div>
+        </div>
+      }
+
+      <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm mb-3" [disabled]="loginForm.invalid">
+        Zaloguj się
+      </button>
+
+      <div class="text-center text-secondary small">
+        Nie masz jeszcze konta? 
+        <a routerLink="/signup" class="text-primary fw-bold text-decoration-none">Zarejestruj się</a>
+      </div>
+
+    </form>
+  </div>
+</div>

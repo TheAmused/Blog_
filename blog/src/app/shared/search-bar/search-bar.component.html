@@ -1,0 +1,11 @@
+<div class="search-container">
+  <i class="bi bi-search search-icon"></i>
+  <input 
+    [(ngModel)]="filterText" 
+    (ngModelChange)="sendFilter()" 
+    id="search" 
+    type="search" 
+    placeholder="Czego szukasz dzisiaj?" 
+    class="search-input" 
+    textFormat>
+</div>

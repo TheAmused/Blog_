@@ -1,0 +1,73 @@
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-9 col-xl-8">
+      
+      <div class="blog-card shadow-lg">
+        
+        <div class="hero-wrapper">
+          <img [src]="image" class="hero-image" alt="Zdjęcie artykułu">
+          <div class="hero-overlay">
+            <h1 class="post-title">{{ title }}</h1>
+          </div>
+        </div>
+
+        <div class="content-body">
+          
+          <div class="meta-bar">
+            <div class="meta-group">
+              <span class="meta-badge views">
+                <i class="bi bi-eye-fill me-1"></i> {{ views }}
+              </span>
+
+              <button 
+                class="meta-badge like-btn" 
+                [class.active]="isLiked"
+                (click)="toggleLike()"
+                title="Polub post">
+                <i class="bi" [class.bi-heart-fill]="isLiked" [class.bi-heart]="!isLiked"></i>
+                <span class="ms-2">{{ likes.length }}</span>
+              </button>
+
+              <span class="meta-text ms-2">
+                <i class="bi bi-person-circle me-1"></i> Autor
+              </span>
+            </div>
+
+            <div class="meta-text date">
+              <i class="bi bi-calendar3 me-1"></i> 2024
+            </div>
+          </div>
+
+          <article class="post-content">
+            <p class="lead">
+              {{ text }}
+            </p>
+          </article>
+
+          @if (id) {
+            <div class="mt-5">
+              <hr class="text-secondary opacity-25 mb-5">
+              <comments-section [postId]="id"></comments-section>
+            </div>
+          }
+
+          <div class="action-footer border-top pt-4 mt-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+            
+            <a routerLink="/blog" class="btn-back">
+              <i class="bi bi-arrow-left me-2"></i> Powrót do artykułów
+            </a>
+
+            @if (currentUserId && postUserId && currentUserId === postUserId) {
+              <button class="btn btn-danger btn-lg px-4 rounded-pill shadow-sm" (click)="deletePost()">
+                <i class="bi bi-trash-fill me-2"></i> Usuń post
+              </button>
+            }
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

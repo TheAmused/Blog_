@@ -1,0 +1,36 @@
+.form-floating {
+  & > .form-control {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+    
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(var(--primary-color), 0.1);
+    }
+  }
+  
+  & > label {
+    color: var(--text-secondary);
+  }
+}
+
+.blog-card-preview {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+
+  .preview-img-wrapper {
+    height: 250px;
+    background-color: var(--bg-color);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

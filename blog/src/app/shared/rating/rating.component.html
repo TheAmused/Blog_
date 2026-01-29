@@ -1,0 +1,19 @@
+<div class="rating-container d-flex align-items-center" (mouseleave)="onStarLeave()">
+  
+  @for (star of stars; track star) {
+    <i class="fa me-1"
+       [ngClass]="{
+         'fa-star': star <= (hoverRating || averageRating),
+         'fa-star-o': star > (hoverRating || averageRating)
+       }"
+       style="cursor: pointer;"
+       (mouseenter)="onStarHover(star)"
+       (click)="onStarClick(star)">
+    </i>
+  }
+
+  <span class="stats">
+    ({{ averageRating | number:'1.1-1' }} / {{ votesCount }})
+  </span>
+  
+</div>

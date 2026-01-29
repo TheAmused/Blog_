@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" [routerLink]="['/']">
+      <i class="bi bi-journal-richtext text-primary"></i>
+      <span>DevBlog</span>
+    </a>
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 gap-lg-3">
+        
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="bi bi-house-door me-1"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/blog']" routerLinkActive="active">
+            <i class="bi bi-newspaper me-1"></i> Artykuły
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/gallery']" routerLinkActive="active">
+            <i class="bi bi-images me-1"></i> Galeria
+          </a>
+        </li>
+
+        @if (authService.isLoggedIn()) {
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/add-post']" routerLinkActive="active">
+              <i class="bi bi-plus-lg me-1"></i> Dodaj wpis
+            </a>
+          </li>
+        }
+      </ul>
+
+      <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+        @if (!authService.isLoggedIn()) {
+          <a class="btn btn-outline-primary rounded-pill px-4" [routerLink]="['/login']">
+            Zaloguj
+          </a>
+          <a class="btn btn-primary rounded-pill px-4" [routerLink]="['/signup']">
+            Rejestracja
+          </a>
+        } @else {
+          <button class="btn btn-outline-danger rounded-pill px-4 d-flex align-items-center gap-2" (click)="signOut()">
+            <i class="bi bi-box-arrow-right"></i> Wyloguj
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div style="height: 80px;"></div>

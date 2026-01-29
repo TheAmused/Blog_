@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 fade-in pb-5">
+  <div class="card auth-card border-0 shadow-lg p-4 p-md-5">
+    
+    <div class="text-center mb-4">
+      <div class="icon-circle bg-success-subtle text-success mb-3 mx-auto">
+        <i class="bi bi-person-plus-fill fs-3"></i>
+      </div>
+      <h2 class="fw-bold">Utwórz konto</h2>
+      <p class="text-secondary small">Dołącz do społeczności DevBlog</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="create()" autocomplete="off">
+      
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="regLogin" formControlName="login" placeholder="Login"
+               [class.is-invalid]="login?.invalid && (login?.dirty || login?.touched)">
+        <label for="regLogin">Login</label>
+        
+        @if (login?.invalid && (login?.dirty || login?.touched)) {
+          <div class="invalid-feedback">
+            @if (login?.errors?.['required']) { Login jest wymagany. }
+            @if (login?.errors?.['minlength']) { Minimum 3 znaki. }
+          </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="regEmail" formControlName="email" placeholder="Email"
+               [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)">
+        <label for="regEmail">Adres Email</label>
+        
+        @if (email?.invalid && (email?.dirty || email?.touched)) {
+          <div class="invalid-feedback">
+            @if (email?.errors?.['required']) { Email jest wymagany. }
+            @if (email?.errors?.['email']) { Niepoprawny format email. }
+          </div>
+        }
+      </div>
+
+      <div class="form-floating mb-4">
+        <input type="password" class="form-control" id="regPass" formControlName="password" placeholder="Hasło"
+               [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)">
+        <label for="regPass">Hasło</label>
+        
+        @if (password?.invalid && (password?.dirty || password?.touched)) {
+          <div class="invalid-feedback">
+            @if (password?.errors?.['required']) { Hasło jest wymagane. }
+            @if (password?.errors?.['minlength']) { Minimum 5 znaków. }
+          </div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm mb-3" [disabled]="registerForm.invalid">
+        Zarejestruj się
+      </button>
+
+      <div class="text-center text-secondary small">
+        Masz już konto? 
+        <a routerLink="/login" class="text-primary fw-bold text-decoration-none">Zaloguj się</a>
+      </div>
+
+    </form>
+  </div>
+</div>

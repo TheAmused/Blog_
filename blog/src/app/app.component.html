@@ -1,0 +1,36 @@
+<div class="app-wrapper d-flex flex-column min-vh-100">
+  
+  <app-navbar></app-navbar>
+
+  <div class="container my-4">
+    
+    <div class="d-flex justify-content-end align-items-center gap-3 mb-4">
+      
+      <div class="counter-widget">
+        <span class="counter-label">Licznik:</span>
+        <span class="counter-value">{{ counter }}</span>
+        <div class="vr mx-2 opacity-25"></div>
+        <button type="button" class="btn-icon-circle text-success" (click)="add()">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+        <button type="button" class="btn-icon-circle text-danger ms-1" (click)="remove()">
+          <i class="bi bi-dash-lg"></i>
+        </button>
+      </div>
+
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+  <footer class="mt-auto py-4 border-top text-center text-secondary small">
+    <div class="container">
+      <p class="mb-0">&copy; 2026 DevBlog. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+</div>

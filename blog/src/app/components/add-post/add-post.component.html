@@ -1,0 +1,91 @@
+<div class="container py-5 fade-in">
+  <div class="row g-5">
+    
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-lg p-4 p-md-5">
+        <h2 class="fw-bold mb-4">Nowy Artykuł</h2>
+        
+        <form [formGroup]="postForm" (ngSubmit)="createPost()">
+          
+          <div class="form-floating mb-3">
+            <input 
+              type="text" 
+              class="form-control" 
+              id="titleInput" 
+              formControlName="title" 
+              placeholder="Tytuł"
+              [class.is-invalid]="f.title.invalid && (f.title.dirty || f.title.touched)">
+            <label for="titleInput">Tytuł artykułu *</label>
+            
+            @if (f.title.invalid && (f.title.dirty || f.title.touched)) {
+              <div class="invalid-feedback">Tytuł jest wymagany.</div>
+            }
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input 
+              type="text" 
+              class="form-control" 
+              id="imageInput" 
+              formControlName="image" 
+              placeholder="URL">
+            <label for="imageInput">Link do zdjęcia (URL)</label>
+          </div>
+
+          <div class="form-floating mb-4">
+            <textarea 
+              class="form-control" 
+              id="textInput" 
+              formControlName="text" 
+              placeholder="Treść" 
+              style="height: 150px"
+              [class.is-invalid]="f.text.invalid && (f.text.dirty || f.text.touched)"></textarea>
+            <label for="textInput">Treść posta (min. 10 znaków) *</label>
+            
+            @if (f.text.invalid && (f.text.dirty || f.text.touched)) {
+              <div class="invalid-feedback">
+                @if (f.text.errors?.['required']) { Treść jest wymagana. }
+                @if (f.text.errors?.['minlength']) { Za krótka treść. }
+              </div>
+            }
+          </div>
+          
+          <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm" [disabled]="postForm.invalid">
+            <i class="bi bi-send me-2"></i> Opublikuj Post
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="sticky-top" style="top: 100px; z-index: 1;">
+        <h5 class="text-secondary text-uppercase ls-1 mb-3 small fw-bold">Podgląd na żywo</h5>
+        
+        <div class="card border-0 shadow overflow-hidden blog-card-preview">
+          <div class="preview-img-wrapper">
+            @if (formValues.image) {
+              <img [src]="formValues.image" class="w-100 h-100 object-fit-cover" alt="Podgląd"
+                   onerror="this.src='https://via.placeholder.com/600x400?text=Brak+Obrazka'">
+            } @else {
+              <div class="d-flex align-items-center justify-content-center h-100 bg-light text-muted">
+                <i class="bi bi-image fs-1 opacity-50"></i>
+              </div>
+            }
+          </div>
+          
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold mb-3">{{ formValues.title || 'Twój tytuł...' }}</h4>
+            <p class="card-text text-secondary">{{ formValues.text || 'Zacznij pisać, aby zobaczyć podgląd treści...' }}</p>
+            
+            <div class="mt-3 pt-3 border-top d-flex justify-content-between text-muted small">
+              <span><i class="bi bi-star-fill text-warning"></i> 0.0</span>
+              <span><i class="bi bi-hand-thumbs-up"></i> 0</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
