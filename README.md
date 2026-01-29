@@ -1,3 +1,8 @@
+**Wykonane:**
+- Komentarze,
+- Polubienia,
+- Paginacja,
+- Wyświetlenia.
 **Wymagania:**
 Node.js i npm
 Uruchomiona baza danych MongoDB
