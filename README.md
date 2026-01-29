@@ -26,5 +26,5 @@ npm run watch
 ```bash
 cd blog
 npm install
-npm start
+npx ng serve
 ```
